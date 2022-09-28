@@ -1,0 +1,16 @@
+#include "main.h"
+
+/**
+ * _strlen - gets character string.
+ * @s: Character to get string.
+ * Return: Returns length of string.
+ **/
+
+int _strlen(char *s)
+{
+	int a;
+
+	for (a = 0; s[a] != '\0'; a++)
+	{}
+	return (a);
+}
