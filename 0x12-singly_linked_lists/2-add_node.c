@@ -1,46 +1,31 @@
-#include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include "lists.h"
-
+#include <string.h>
 /**
- * _strlen - Length of the passed string
- * @s: String
- * Return: Returns the length of a string
-**/
-int _strlen(const char *s)
-{
-int i = 0;
-
-while (*(s + i) != '\0')
-i++;
-
-return (i);
-}
-
-/**
- * add_node - Prints length and the string, then returns amount of nodes
- * @head: Pointer to a struct constant
- * @str: haha ex di
- * Return: Returns amount of node
-**/
-
+ * add_node - adds a new node
+ * @head: head address i think
+ * @str: string to put through
+ * Return: returns an address of new node
+ */
 list_t *add_node(list_t **head, const char *str)
 {
+	list_t *new;
+	int i = 0;
 
-list_t *newNode;
+	while (str[i])
+		i++;
 
-newNode = malloc(sizeof(newNode));
-if (newNode == NULL)
-return (NULL);
-if (str == NULL)
-{
-free(newNode);
-return (NULL);
-}
-newNode->len = _strlen(str);
-newNode->str = strdup(str);
-newNode->next = *(head);
-*head = newNode;
+	new = malloc(sizeof(list_t));
+	if (new == NULL)
+	{
+		return (NULL);
+	}
+	new->str = strdup(str);
+	new->len = i;
+	new->next = *head;
 
-return (newNode);
+	*head = new;
+
+	return (new);
 }

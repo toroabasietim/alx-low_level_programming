@@ -1,52 +1,42 @@
-#include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 #include "lists.h"
-
 /**
- * _strlen - Length of the passed string
- * @s: String
- * Return: Returns the length of a string
-**/
-int _strlen(const char *s)
-{
-int i = 0;
-
-while (*(s + i) != '\0')
-i++;
-
-return (i);
-}
-
-/**
- * add_node_end - Add nodes to the end of the nodes
- * @head: Pointer to a struct pointer
- * @str: String passed
- * Return: Returns amount of node
-**/
-
+ * add_node_end - adds node at end
+ * @head: head
+ * @str: string to add
+ * Return: address
+ */
 list_t *add_node_end(list_t **head, const char *str)
 {
-list_t *newNode, *tmp = *head;
+	int i = 0;
+	list_t *new, *f;
 
-newNode = malloc(sizeof(newNode));
-if (newNode == NULL)
-return (NULL);
-if (str == NULL)
-{
-free(newNode);
-return (NULL);
-}
-newNode->len = _strlen(str);
-newNode->str = strdup(str);
-newNode->next = NULL;
-if (*head == NULL)
-{
-*head = newNode;
-return (newNode);
-}
-while (tmp->next != NULL)
-tmp = tmp->next;
-tmp->next = newNode;
-
-return (newNode);
+	while (str[i])
+		i++;
+	new = malloc(sizeof(list_t));
+	if (new == NULL)
+		return (NULL);
+	new->str = strdup(str);
+	new->len = i;
+	new->next = NULL;
+	if (strdup(str) == NULL)
+	{
+		free(new);
+		return (NULL);
+	}
+	if (*head == NULL)
+	{
+		*head = new;
+		return (new);
+	}
+	else
+	{
+		f = *head;
+		while (f->next != NULL)
+			f = f->next;
+		f->next = new;
+		return (new);
+	}
 }

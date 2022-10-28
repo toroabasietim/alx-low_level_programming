@@ -1,14 +1,15 @@
-extern printf
 global main
 
-section .data
-
-	msg db "Hello, Holberton", 10
+extern printf
 
 section .text
+
 main:
-	mov edi, msg
-	mov eax, 0
-	call printf
-	mov eax, 0
-ret
+	mov	edi, msg
+	xor	eax, eax
+	call	printf
+	mov	eax, 0
+	ret
+
+section .rodata
+msg: db 'Hello, Holberton', 10, 0
